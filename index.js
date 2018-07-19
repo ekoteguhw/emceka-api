@@ -5,12 +5,12 @@ const Mck = require('./models/Mck')
 const bcrypt = require('bcrypt')
 const User = require('./models/User')
 
-const server = hapi.server({
-  port: process.env.PORT || 4000,
-  host: 'localhost'
+const server = hapi.Server({
+  port: process.env.PORT || 3000,
+  host: '0.0.0.0'
 })
 
-mongoose.connect(`mongodb://${process.env.MCK_USER}:${process.env.MCK_PASSWORD}@${process.env.MCK_SERVER}:${process.env.MCK_PORT}/${process.env.MCK_DB}`, { useNewUrlParser: true })
+mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true })
 
 mongoose.connection.once('open', () => {
   console.log('Database Connected')
