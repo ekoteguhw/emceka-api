@@ -6,7 +6,7 @@ const bcrypt = require('bcrypt')
 const User = require('./models/User')
 
 const server = hapi.server({
-  port: 4000,
+  port: process.env.PORT || 4000,
   host: 'localhost'
 })
 
