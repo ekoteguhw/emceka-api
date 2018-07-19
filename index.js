@@ -78,7 +78,6 @@ const init = async () => {
         facilities,
         location,
         images,
-        rating,
         reviews,
         userCreated
       } = req.payload
@@ -90,7 +89,6 @@ const init = async () => {
         facilities,
         location,
         images,
-        rating,
         reviews,
         userCreated
       })
@@ -100,33 +98,7 @@ const init = async () => {
     }
   }, {
     method: 'POST',
-    path: '/users/create',
-    handler: (req, res) => {
-      const {
-        name,
-        avatar,
-        description,
-        userId,
-        email,
-        password
-      } = req.payload
-
-      const passwordHash = bcrypt.hashSync(password, 10)
-      const user = new User({
-        name,
-        avatar,
-        description,
-        userId,
-        email,
-        passwordHash
-      })
-
-      console.log('someone access API posting a user')
-      return user.save()
-    }
-  }, {
-    method: 'POST',
-    path: '/mcks/mck/review&mck_id={mck_id}',
+    path: '/mcks/review&mck_id={mck_id}',
     handler: (req, res) => {
 
       const {
@@ -159,6 +131,32 @@ const init = async () => {
     handler: (req, res) => {
       console.log('someone access API get user by userId')
       return User.findOne({ userId: req.params.userId })
+    }
+  }, {
+    method: 'POST',
+    path: '/users/create',
+    handler: (req, res) => {
+      const {
+        name,
+        avatar,
+        description,
+        userId,
+        email,
+        password
+      } = req.payload
+
+      const passwordHash = bcrypt.hashSync(password, 10)
+      const user = new User({
+        name,
+        avatar,
+        description,
+        userId,
+        email,
+        passwordHash
+      })
+
+      console.log('someone access API posting a user')
+      return user.save()
     }
   }])
 

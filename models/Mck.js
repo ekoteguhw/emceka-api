@@ -8,36 +8,42 @@ const MckSchema = new Schema({
   facilities: {
     room: {
       flush: {
-        sum: Number
+        sum: { type: Number, default: 0 }
       },
       squat: {
-        sum: Number
+        sum: { type: Number, default: 0 }
       },
       bath: {
-        sum: Number,
-        hasShower: Boolean
+        sum: { type: Number, default: 0 },
+        hasShower: { type: Boolean, default: false }
       }
     },
-    hasTissue: Boolean,
-    hasSoap: Boolean,
-    hasTrash: Boolean,
-    hasMirror: Boolean
+    hasTissue: { type: Boolean, default: false },
+    hasSoap: { type: Boolean, default: false },
+    hasTrash: { type: Boolean, default: false },
+    hasMirror: { type: Boolean, default: false }
   },
   location: {
-    latitude: Number,
-    longitude: Number
+    latitude: { type: Number, default: 0 },
+    longitude: { type: Number, default: 0 }
   },
   images: [{ uri: String }],
-  rating: { type: Number, default: 0 },
   reviews: [{
-    userReview: Object,
+    userReview: {
+      userId: String,
+      name: String
+    },
     title: String,
     review: String,
-    rating: Number,
+    rating: { type: Number, default: 0 },
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now }
   }],
-  userCreated: Object,
+  userCreated: {
+    userId: String,
+    name: String,
+    avatar: String
+  },
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now }
 })
