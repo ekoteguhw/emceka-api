@@ -4,6 +4,7 @@ const Schema = mongoose.Schema
 const MckSchema = new Schema({
   name: String,
   description: String,
+  slug: String,
   address: String,
   facilities: {
     room: {

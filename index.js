@@ -17,8 +17,6 @@ const server = hapi.Server({
   }
 })
 
-console.log(`mongodb://${process.env.MCK_USER}:${process.env.MCK_PASSWORD}@${process.env.MCK_SERVER}:${process.env.MCK_PORT}/${process.env.MCK_DB}`)
-
 mongoose.connect(`mongodb://${process.env.MCK_USER}:${process.env.MCK_PASSWORD}@${process.env.MCK_SERVER}:${process.env.MCK_PORT}/${process.env.MCK_DB}`, { useNewUrlParser: true })
 
 mongoose.connection.once('open', () => {
@@ -81,6 +79,7 @@ const init = async () => {
       const {
         name,
         description,
+        slug,
         address,
         facilities,
         location,
@@ -92,6 +91,7 @@ const init = async () => {
       const mck = new Mck({
         name,
         description,
+        slug,
         address,
         facilities,
         location,
