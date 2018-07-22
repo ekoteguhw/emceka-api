@@ -7,7 +7,14 @@ const User = require('./models/User')
 
 const server = hapi.Server({
   port: process.env.PORT || 3000,
-  host: '0.0.0.0'
+  host: '0.0.0.0',
+  routes: {
+    cors: {
+      origin: ['*'],
+      headers: ['Accept', 'Content-Type'],
+      additionalHeaders: ['X-Requested-With']
+    }
+  }
 })
 
 console.log(`mongodb://${process.env.MCK_USER}:${process.env.MCK_PASSWORD}@${process.env.MCK_SERVER}:${process.env.MCK_PORT}/${process.env.MCK_DB}`)
